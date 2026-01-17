@@ -135,7 +135,8 @@ if misc.difficulty == 3 then
     rm.RemoveIngredient("spectroscopic-holmium-processing", "spectroscope", 1)
     rm.RemoveProduct("spectroscopic-holmium-processing", {type="item", name="spectroscope", amount=1, probability=0.99})
 
-    data.raw.recipe["stone-brick"].force_auto_recycle = true
+    data.raw.item["stone-brick"].auto_recycle = false
+    data.raw.recipe["stone-brick-recycling"].results = {{type="item", name="stone", amount=0, extra_count_fraction=0.5}}
 
     --it turns out that doing this without imports requires a lot of water. okay. i'm not going to change it. i'm going to give you more water.
     rm.AddProduct("ice-melting", "water", 5)
@@ -225,6 +226,8 @@ if data.raw.item["philosophers-hormone"] and misc.difficulty == 3 then
     rm.AddProduct("philosophers-hormone-from-iron-bacteria", "chemical-waste", 15)
     rm.AddProduct("philosophers-hormone-from-copper-bacteria", "chemical-waste", 15)
 end
+
+rm.AddIngredient("brain-galactification", "growth-serum", mods["ThemTharHillsMk2"] and 2 or 8)
 
 --AQUILO
 
