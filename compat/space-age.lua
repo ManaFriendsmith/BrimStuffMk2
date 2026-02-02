@@ -240,7 +240,7 @@ if misc.difficulty == 3 then
     if not data.raw.item["self-regulating-valve"] then
         rm.AddIngredient("cryogenic-plant", "differential-girdlespring", 10)
     end    
-    rm.AddProduct("fluoroketone-cooling", "chemical-waste", mods["IfNickelMk2"] and 20 or 2)
+    rm.AddProduct("fluoroketone-cooling", "chemical-waste", mods["IfNickelMk2"] and 100 or 2)
 
     if data.raw.item["hydrocoptic-marzelvane"] and #data.raw.recipe["cryogenic-plant"].ingredients > 6 and rm.GetIngredientCount("cryogenic-plant", "lithium-plate") > 0 and not mods["maraxsis"] then
         rm.AddIngredient("hydrocoptic-marzelvane", "lithium-plate", 1)
