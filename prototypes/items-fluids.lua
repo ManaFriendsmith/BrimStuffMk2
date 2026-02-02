@@ -155,7 +155,7 @@ data:extend({
         drop_sound = item_sounds.plastic_inventory_move,
         stack_size = 100,
         default_import_location = "nauvis",
-        weight = 3*kg
+        weight = 1.25*kg
     },
     {
         type = "item",
