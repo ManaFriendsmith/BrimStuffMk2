@@ -243,7 +243,6 @@ if misc.difficulty == 3 then
     rm.AddProduct("fluoroketone-cooling", "chemical-waste", mods["IfNickelMk2"] and 100 or 2)
 
     if data.raw.item["hydrocoptic-marzelvane"] and #data.raw.recipe["cryogenic-plant"].ingredients > 6 and rm.GetIngredientCount("cryogenic-plant", "lithium-plate") > 0 and not mods["maraxsis"] then
-        rm.AddIngredient("hydrocoptic-marzelvane", "lithium-plate", 1)
         rm.RemoveIngredient("cryogenic-plant", "lithium-plate", 99999)
     end
 
