@@ -984,6 +984,42 @@ if mods["space-age"] then
         },
         {
             type = "recipe",
+            name = "aquilo-nitric-acid",
+            icons = {
+            {
+                icon = "__BrimStuffMk2__/graphics/icons/nitric-acid.png",
+                icon_size = 64,
+                icon_mipmaps = 4,
+            },
+            {
+                icon = "__space-age__/graphics/icons/fluid/ammonia.png",
+                icon_size = 64,
+                scale = 0.25,
+                shift = {-8, -8}
+            }
+            },
+            category = "organic-or-chemistry",
+            subgroup = "aquilo-processes",
+            order = "a[ammonia]-ab",
+            energy_required = 2,
+            ingredients = {
+                {type="fluid", name="ammonia", amount=20},
+                {type="fluid", name="water", amount=10}
+            },
+            results = {
+                {type="fluid", name="nitric-acid", amount=20}
+            },
+            allow_productivity = true,
+            enabled = false,
+            crafting_machine_tint = {
+            primary = {0.1, 0.1, 1, 1},
+            secondary = {0.5, 0.5, 1, 1},
+            tertiary = {0.5, 0.5, 1, 1},
+            quaternary = {0, 0, 0.75, 1}
+            }
+        },
+        {
+            type = "recipe",
             name = "solid-fuel-disposal",
             icons = {
               {

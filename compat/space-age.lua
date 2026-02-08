@@ -236,6 +236,8 @@ table.insert(data.raw["assembling-machine"]["cryogenic-plant"].crafting_categori
 rm.AddProduct("lithium", "chemical-waste", 15)
 rm.AddProduct("solid-fuel-from-ammonia", "chemical-waste", 5)
 
+tm.AddUnlock("planet-discovery-aquilo", "aquilo-nitric-acid")
+
 if misc.difficulty == 3 then
     if not data.raw.item["self-regulating-valve"] then
         rm.AddIngredient("cryogenic-plant", "differential-girdlespring", 10)
