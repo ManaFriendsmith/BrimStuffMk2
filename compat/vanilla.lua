@@ -39,6 +39,10 @@ rm.AddProduct("basic-oil-processing", {type="item", name="sulfur", amount=1, pro
 rm.AddProduct("advanced-oil-processing", {type="item", name="sulfur", amount=1, probability=0.5})
 rm.AddProduct("coal-liquefaction", {type="item", name="sulfur", amount=1, probability=0.5})
 
+data.raw.recipe["basic-oil-processing"].auto_recycle = false
+data.raw.recipe["advanced-oil-processing"].auto_recycle = false
+data.raw.recipe["coal-liquefaction"].auto_recycle = false
+
 rm.AddProduct("solid-fuel-from-light-oil", "chemical-waste", 5)
 rm.AddProduct("solid-fuel-from-heavy-oil", "chemical-waste", 10)
 

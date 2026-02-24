@@ -51,6 +51,7 @@ end
 tm.AddUnlock("calcite-processing", "synthetic-rubber")
 
 rm.AddProduct("simple-coal-liquefaction", {type="item", name="sulfur", amount=1, probability=0.5})
+data.raw.recipe["simple-coal-liquefaction"].auto_recycle = false
 
 if misc.difficulty > 1 then
     rm.AddProduct("carbon", {type="item", name="toluene", probability=0.04, amount=1})
