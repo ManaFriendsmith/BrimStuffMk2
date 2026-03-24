@@ -145,3 +145,12 @@ if mods["Cerys-Moon-of-Fulgora"] then
     tm.RemovePrerequisite("byproduct-disposal", "recycling")
     tm.AddPrerequisite("byproduct-disposal", "planet-discovery-fulgora")
 end
+
+if mods["Moshine"] then
+    table.insert(data.raw["resource"]["multi-ore"].minable.results, {type="item", name="potassium-nitrate", amount=1, probability=0.03})
+    rm.AddProduct("petroleum-from-sand-sulfur-steam-carbon", "chemical-waste", 15)
+
+    if misc.difficulty > 1 then
+        rm.ReplaceIngredientProportional("concrete-from-molten-iron-and-sand", "molten-iron", "toluene", 0.1, 1)
+    end
+end
