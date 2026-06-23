@@ -35,9 +35,9 @@ end
 
 rm.AddProduct("plastic-bar", "chemical-waste", 20)
 
-rm.AddProduct("basic-oil-processing", {type="item", name="sulfur", amount=1, probability=0.5})
-rm.AddProduct("advanced-oil-processing", {type="item", name="sulfur", amount=1, probability=0.5})
-rm.AddProduct("coal-liquefaction", {type="item", name="sulfur", amount=1, probability=0.5})
+rm.AddProduct("basic-oil-processing", {type="item", name="sulfur", amount=1, independent_probability=0.5})
+rm.AddProduct("advanced-oil-processing", {type="item", name="sulfur", amount=1, independent_probability=0.5})
+rm.AddProduct("coal-liquefaction", {type="item", name="sulfur", amount=1, independent_probability=0.5})
 
 data.raw.recipe["basic-oil-processing"].auto_recycle = false
 data.raw.recipe["advanced-oil-processing"].auto_recycle = false
@@ -97,8 +97,8 @@ if misc.difficulty > 1 then
 end
 
 if misc.difficulty == 3 then
-    rm.AddProduct("heavy-oil-cracking", {type="item", name="toluene", amount=1, probability=0.05})
-    rm.AddProduct("light-oil-cracking", {type="item", name="toluene", amount=1, probability=0.05})
+    rm.AddProduct("heavy-oil-cracking", {type="item", name="toluene", amount=1, independent_probability=0.05})
+    rm.AddProduct("light-oil-cracking", {type="item", name="toluene", amount=1, independent_probability=0.05})
 end
 
 tm.AddUnlock("sulfur-processing", "pf-nitric-acid")
@@ -169,7 +169,7 @@ end
 
 if misc.difficulty == 3 and (not mods["IfNickelMk2"]) then
     rm.AddIngredient("fast-splitter", "spring", 4)
-    if mods["quality"] then
+    if mods["recycler"] then
         rm.AddIngredient("recycler", "spring", 20)
     end
 end
@@ -195,7 +195,7 @@ if misc.difficulty == 3 then
     tm.AddPrerequisite("fast-inserter", "rubber")
 
     if not mods["space-age"] then
-        rm.AddIngredient("stack-inserter", "differential-girdlespring")
+        rm.AddIngredient("stack-inserter", "differential-girdlespring", 2)
     end
 
     if not mods["IfNickelMk2"] then
@@ -237,7 +237,7 @@ end
 
 if not mods["IfNickelMk2"] then
     if misc.difficulty > 1 then
-        rm.AddIngredient("fluid-wagon", "airtight-seal", 3)
+        rm.AddIngredient("fluid-wagon", "airtight-seal", 6)
     else
         rm.AddIngredient("fluid-wagon", "rubber", 5)
     end
@@ -263,12 +263,6 @@ end
 --CRAFTING MACHINES
 
 table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "basic-chemistry")
-if mods["space-age"] then
-    table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "organic-or-basic-chemistry")
-    table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "cryogenics-or-basic-chemistry")
-    table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories, "organic-or-basic-chemistry")
-    table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories, "cryogenics-or-basic-chemistry")
-end
 
 tm.AddPrerequisite("automation-2", "rubber")
 
@@ -347,10 +341,10 @@ if misc.difficulty > 1 then
 end
 
 if not data.raw.fluid["organotins"] then
-    data.raw.recipe["slowdown-capsule"].category = "crafting-with-fluid"
+    data.raw.recipe["slowdown-capsule"].categories={"crafting-with-fluid"}
     rm.AddIngredient("slowdown-capsule", "chemical-waste", 50)
 
-    data.raw.recipe["poison-capsule"].category = "crafting-with-fluid"
+    data.raw.recipe["poison-capsule"].categories={"crafting-with-fluid"}
     rm.AddIngredient("poison-capsule", "chemical-waste", 100)
 end
 

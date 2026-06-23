@@ -242,7 +242,8 @@ if mods["space-age"] then
             default_temperature = 15,
             base_color = {0.6, 0.2, 1, 1},
             flow_color = {1, 0.5, 1, 1},
-            visualization_color = {0.6, 0.2, 1, 1}
+            visualization_color = {0.6, 0.2, 1, 1},
+            draw_as_glow = true
         }
     })
 end

@@ -29,6 +29,7 @@ local bcp_icon = {
 }
 
 local bcp = util.table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
+local burner_pipes = table.deepcopy(require("__base__/prototypes/entity/assembler-pictures").assembler3pipepictures)
 
 bcp.name = "basic-chemical-plant"
 bcp.order = "dz"
@@ -37,7 +38,7 @@ bcp.icons = bcp_icon
 bcp.fluid_boxes = {
   {
     production_type = "input",
-    pipe_picture = assembler3pipepictures(),
+    pipe_picture = burner_pipes,
     pipe_covers = pipecoverspictures(),
     volume = 1000,
     pipe_connections = {{ flow_direction="input", position = {0, -1}, direction = defines.direction.north }},
@@ -45,7 +46,7 @@ bcp.fluid_boxes = {
   },
   {
     production_type = "output",
-    pipe_picture = assembler3pipepictures(),
+    pipe_picture = burner_pipes,
     pipe_covers = pipecoverspictures(),
     volume = 1000,
     pipe_connections = {{ flow_direction="output", position = {0, 1}, direction = defines.direction.south }},
@@ -202,7 +203,7 @@ data:extend({
   {
     type = "recipe",
     name = "basic-chemical-plant",
-    category = "crafting",
+    categories={"crafting"},
     energy_required = 1,
     results = {
       {type="item", name="basic-chemical-plant", amount=1}

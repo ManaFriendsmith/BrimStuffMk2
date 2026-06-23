@@ -30,19 +30,19 @@ tm.AddUnlock("asteroid-productivity", {type="change-recipe-productivity", recipe
 
 rm.AddIngredient("crusher", "drive-belt", 10)
 
-data.raw.recipe["ice-melting"].category = "cryogenics-or-basic-chemistry"
+rm.AddRecipeCategory("ice-melting", "basic-chemistry")
 
 rm.AddProduct("advanced-thruster-fuel", "chemical-waste", 60)
 rm.AddProduct("advanced-thruster-oxidizer", "chemical-waste", 60)
 
 if misc.difficulty == 3 then
-    rm.AddIngredient("cargo-bay", "differential-girdlespring", 1)
-    rm.AddIngredient("crusher", "differential-girdlespring", 1)
+    rm.AddIngredient("cargo-bay", "differential-girdlespring", data.raw.item["nitinol-plate"] and 5 or 10)
+    rm.AddIngredient("crusher", "differential-girdlespring", data.raw.item["nitinol-plate"] and 5 or 10)
     rm.AddIngredient("asteroid-collector", "differential-girdlespring", 10)
     rm.RemoveIngredient("asteroid-collector", "nitinol-plate", 10)
 
-    rm.AddIngredient("orbital-transfer-provider", "differential-girdlespring", 1)
-    rm.AddIngredient("orbital-transfer-requester", "differential-girdlespring", 1)
+    --rm.AddIngredient("orbital-transfer-provider", "differential-girdlespring", 1)
+    --rm.AddIngredient("orbital-transfer-requester", "differential-girdlespring", 1)
 end
 
 
@@ -50,17 +50,17 @@ end
 
 tm.AddUnlock("calcite-processing", "synthetic-rubber")
 
-rm.AddProduct("simple-coal-liquefaction", {type="item", name="sulfur", amount=1, probability=0.5})
+rm.AddProduct("simple-coal-liquefaction", {type="item", name="sulfur", amount=1, independent_probability=0.5})
 data.raw.recipe["simple-coal-liquefaction"].auto_recycle = false
 
 if misc.difficulty > 1 then
-    rm.AddProduct("carbon", {type="item", name="toluene", probability=0.04, amount=1})
+    rm.AddProduct("carbon", {type="item", name="toluene", independent_probability=0.04, amount=1})
 
     rm.AddIngredient("concrete-from-molten-iron", "toluene")
     rm.RemoveIngredient("concrete-from-molten-iron", "molten-iron", 10)
 end
 
-data.raw.recipe["carbon"].category = "cryogenics-or-basic-chemistry"
+rm.AddRecipeCategory("carbon", "basic-chemistry")
 
 if misc.difficulty == 3 then
     --you want belts? make rubber on the planet that hates rubber.
@@ -70,7 +70,12 @@ if misc.difficulty == 3 then
     rm.AddIngredient("big-mining-drill", "differential-girdlespring", 10)
 end
 
-rm.AddProduct("simple-coal-liquefaction", "chemical-waste", 80)
+rm.AddProduct("simple-coal-liquefaction", {type="fluid", name="chemical-waste", amount=80, fluidbox_index=2})
+
+if misc.starting_planet == "vulcanus" then
+    table.insert(data.raw["simple-entity"]["ashland-lichen-tree"].minable.results, {type="item", name="wood", amount=1})
+    table.insert(data.raw["simple-entity"]["ashland-lichen-tree-flaming"].minable.results, {type="item", name="wood", amount=1})
+end
 
 --FULGORA
 
@@ -83,18 +88,22 @@ table.insert(data.raw["simple-entity"]["fulgoran-ruin-huge"].minable.results, {t
 table.insert(data.raw["simple-entity"]["fulgoran-ruin-vault"].minable.results, {type="item", name="rubber", amount=111})
 table.insert(data.raw["lightning-attractor"]["fulgoran-ruin-attractor"].minable.results, {type="item", name="rubber", amount=4})
 
+table.insert(data.raw["simple-entity"]["fulgora-sunk-ruin-big"].minable.results, {type="item", name="rubber", amount_min=1, amount_max=5})
+table.insert(data.raw["simple-entity"]["fulgora-sunk-ruin-medium-tall"].minable.results, {type="item", name="rubber", amount_min=1, amount_max=3})
+
+rm.AddRecipeCategory("ice-melting", "cryogenics") --put it back
 rm.AddIngredient("lightning-rod", "rubber", 4)
 tm.SetTechnologyTrigger("byproduct-disposal", "recycler")
 
 if misc.difficulty > 1 then
-    rm.AddProduct("scrap-recycling", {type="item", name="drive-belt", amount=1, probability=0.06})
+    rm.AddProduct("scrap-recycling", {type="item", name="drive-belt", amount=1, independent_probability=0.06})
     if misc.difficulty == 3 and mods["LasingAroundMk2"] then
-        rm.AddProduct("weird-alien-gizmo-recycling", {type="item", name="differential-girdlespring", amount=1, probability=0.01})
-        rm.AddProduct("weird-alien-gizmo-recycling", {type="item", name="spring", amount=1, probability=0.1})
+        rm.AddProduct("weird-alien-gizmo-recycling", {type="item", name="differential-girdlespring", amount=1, independent_probability=0.01})
+        rm.AddProduct("weird-alien-gizmo-recycling", {type="item", name="spring", amount=1, independent_probability=0.1})
         rm.AddIngredient("cardinal-grammeter", "differential-girdlespring", 1)
     end
 else
-    rm.AddProduct("scrap-recycling", {type="item", name="rubber", amount=1, probability=0.04})
+    rm.AddProduct("scrap-recycling", {type="item", name="rubber", amount=1, independent_probability=0.04})
 end
 
 tm.AddUnlock("scrap-recycling-productivity", {type="change-recipe-productivity", recipe="metalcelium-electroponics-with-scrap", change=0.1})
@@ -134,7 +143,7 @@ if misc.difficulty == 3 then
     rm.MultiplyRecipe("spectroscopic-holmium-processing", 2)
     rm.AddIngredient("spectroscopic-holmium-processing", "toluene", 1)
     rm.RemoveIngredient("spectroscopic-holmium-processing", "spectroscope", 1)
-    rm.RemoveProduct("spectroscopic-holmium-processing", {type="item", name="spectroscope", amount=1, probability=0.99})
+    rm.RemoveProduct("spectroscopic-holmium-processing", {type="item", name="spectroscope", amount=1, independent_probability=0.99})
 
     data.raw.item["stone-brick"].auto_recycle = false
     data.raw.recipe["stone-brick-recycling"].results = {{type="item", name="stone", amount=0, extra_count_fraction=0.5}}
@@ -161,8 +170,6 @@ if misc.difficulty > 1 then
     tm.RemovePrerequisite("plastic-bar-productivity", "agricultural-science-pack")
 end
 
-table.insert(data.raw["assembling-machine"]["biochamber"].crafting_categories, "organic-or-basic-chemistry")
-
 tm.AddPrerequisite("planet-discovery-gleba", "brimstuff-greenhouse")
 tm.AddPrerequisite("advanced-polymer-synthesis", "agricultural-science-pack")
 
@@ -173,7 +180,7 @@ if misc.difficulty > 1 then
     table.insert(data.raw["tree"]["boompuff"].minable.results, {type="item", name="gunpowder", amount=10})
     tm.AddUnlock("agriculture", "boompuff-cultivation")
 
-    rm.AddProduct("burnt-spoilage", {type="item", name="toluene", amount=1, probability=0.04})
+    rm.AddProduct("burnt-spoilage", {type="item", name="toluene", amount=1, independent_probability=0.04})
 end
 
 if data.raw.item["mutagenic-sludge"] or (data.raw.item["philosophers-hormone"] and (misc.difficulty == 3)) then
@@ -208,6 +215,14 @@ if misc.difficulty == 3 then
     rm.AddProduct("nutrients-from-yumako-mash", "chemical-waste", 20)
     rm.AddProduct("nutrients-from-fish", "chemical-waste", 50)
     rm.AddProduct("nutrients-from-biter-egg", "chemical-waste", 20)
+
+    rm.AddRecipeCategory("nutrients-from-yumako-mash", "crafting-with-fluid")
+    rm.RemoveRecipeCategory("nutrients-from-yumako-mash", "crafting")
+    rm.AddRecipeCategory("nutrients-from-fish", "crafting-with-fluid")
+    rm.RemoveRecipeCategory("nutrients-from-fish", "crafting")
+    rm.AddRecipeCategory("nutrients-from-biter-egg", "crafting-with-fluid")
+    rm.RemoveRecipeCategory("nutrients-from-biter-egg", "crafting")
+
 else
     rm.ReplaceIngredientProportional("overgrowth-yumako-soil", "water", "fertilizer-slurry")
     rm.ReplaceIngredientProportional("overgrowth-jellynut-soil", "water", "fertilizer-slurry")
@@ -231,8 +246,6 @@ end
 rm.AddIngredient("brain-galactification", "growth-serum", mods["ThemTharHillsMk2"] and 2 or 8)
 
 --AQUILO
-
-table.insert(data.raw["assembling-machine"]["cryogenic-plant"].crafting_categories, "cryogenics-or-basic-chemistry")
 
 rm.AddProduct("lithium", "chemical-waste", 15)
 rm.AddProduct("solid-fuel-from-ammonia", "chemical-waste", 5)

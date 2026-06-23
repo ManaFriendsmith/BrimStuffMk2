@@ -6,6 +6,7 @@ if not (settings.startup["brimstuff-greenhouse"].value or mods["space-age"]) the
 end
 
 local gh = util.table.deepcopy(data.raw["assembling-machine"]["assembling-machine-2"])
+local green_pipes = table.deepcopy(require("__base__/prototypes/entity/assembler-pictures").assembler2pipepictures)
 
 gh.name = "brimstuff-greenhouse"
 gh.order = "ca"
@@ -17,7 +18,7 @@ gh.next_upgrade = nil
 gh.fluid_boxes = {
   {
     production_type = "input",
-    pipe_picture = assembler2pipepictures(),
+    pipe_picture = green_pipes,
     pipe_covers = pipecoverspictures(),
     volume = 1000,
     pipe_connections = {{ flow_direction="input", position = {0, -1}, direction = defines.direction.north }},
@@ -25,7 +26,7 @@ gh.fluid_boxes = {
   },
   {
     production_type = "output",
-    pipe_picture = assembler2pipepictures(),
+    pipe_picture = green_pipes,
     pipe_covers = pipecoverspictures(),
     volume = 1000,
     pipe_connections = {{ flow_direction="output", position = {0, 1}, direction = defines.direction.south }},
@@ -204,7 +205,7 @@ data:extend({
   {
     type = "recipe",
     name = "brimstuff-greenhouse",
-    category = mods["Age-of-Production"] and "woodworking-or-crafting" or (mods["space-age"] and "organic-or-hand-crafting" or "crafting"),
+    categories = mods["Age-of-Production"] and {"woodworking", "crafting"} or (mods["space-age"] and {"organic", "crafting"} or {"crafting"}),
     subgroup = "production-machine",
     energy_required = 1,
     results = {
@@ -226,7 +227,7 @@ data:extend({
   {
     type = "recipe",
     name = "brimstuff-wood-growth",
-    category = "brimstuff-botany",
+    categories={"brimstuff-botany"},
     subgroup = "brimstuff-botany",
     order = "b",
     energy_required = 2,
@@ -254,7 +255,7 @@ data:extend({
     name = "fertilizer-slurry",
     subgroup = "brimstuff-botany",
     order = "a",
-    category = mods["space-age"] and "organic-or-basic-chemistry" or "basic-chemistry",
+    categories = mods["space-age"] and {"organic", "chemistry"} or {"basic-chemistry"},
     energy_required = 1,
     results = {
       {type="fluid", name="fertilizer-slurry", amount=100}
@@ -314,7 +315,7 @@ if mods["LunarLandings"] then
     {
       type = "recipe",
       name = "brimstuff-oxygen",
-      category = "brimstuff-botany",
+      categories={"brimstuff-botany"},
       subgroup = "brimstuff-botany",
       order = "ab",
       energy_required = 2,

@@ -77,7 +77,7 @@ if mods["scrap-industry"] then
 
     if misc.difficulty == 3 then
         if data.raw.item["mech-scrap"] then
-            rm.AddProduct("sort-mech-scrap", {type="item", name="spring", amount=1, probability=mods["BrassTacksMk2"] and 0.5 or 0.25})
+            rm.AddProduct("sort-mech-scrap", {type="item", name="spring", amount=1, independent_probability=mods["BrassTacksMk2"] and 0.5 or 0.25})
             ScrapIndustry.items["spring"] = {scrap={"mech-scrap", data.raw.item["rubber-bits"] and "rubber-bits" or nil}, scale=ScrapIndustry.CHEAP, failrate=0.02}
         else
             if data.raw.item["rubber-bits"] then
@@ -85,6 +85,16 @@ if mods["scrap-industry"] then
             else
                 ScrapIndustry.items["spring"] = {scrap={"rubber-bits", mods["BrassTacksMk2"] and "brass-scrap" or "copper-scrap"}, scale=ScrapIndustry.CHEAP, failrate=0.02}
             end
+        end
+    end
+end
+
+if mods["pf-beacon-rework"] then
+    if misc.difficulty > 1 then
+        if tune_up_data then
+            tune_up_data.ReplaceIngredientProportional("external-drive-unit", "electronic-circuit", "drive-belt", 0.6)
+        else
+            rm.AddIngredient("external-drive-unit", "drive-belt", 5)
         end
     end
 end

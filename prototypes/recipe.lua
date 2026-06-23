@@ -7,8 +7,7 @@ if mods["Paracelsin"] then
             {
                 type = "recipe",
                 name = "paracelsian-synthetic-rubber",
-                category = "organic-or-basic-chemistry",
-                additional_categories = {"electrochemistry"},
+                categories={"basic-chemistry", "organic", "electrochemistry"},
                 ingredients = {
                     {type="item", name="solid-fuel", amount=5},
                     {type="item", name="sulfur", amount=1},
@@ -48,8 +47,7 @@ if mods["Paracelsin"] then
                         shift = {-8, -8}
                     }
                 },
-                category = "organic-or-basic-chemistry",
-                additional_categories = {"electrochemistry"},
+                categories={"basic-chemistry", "organic", "electrochemistry"},
                 ingredients = {
                     {type="item", name="carbon", amount=2},
                     {type="item", name="vaterite", amount=2},
@@ -83,7 +81,7 @@ data:extend({
     {
         type = "recipe",
         name = "potassium-nitrate",
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "basic-chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"basic-chemistry"},
         ingredients = {
             {type="item", name="stone", amount=1},
             {type="fluid", name="water", amount=20}
@@ -107,7 +105,7 @@ data:extend({
     {
         type = "recipe",
         name = "rubber",
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "basic-chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"basic-chemistry"},
         ingredients = {
             {type="item", name="wood", amount=3},
             {type="item", name="sulfur", amount=1},
@@ -132,7 +130,7 @@ data:extend({
     {
         type = "recipe",
         name = "pf-nitric-acid",
-        category = mods["space-age"] and "organic-or-chemistry" or "chemistry",
+        categories = mods["space-age"] and {"organic", "chemistry"} or {"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         ingredients = {
@@ -173,7 +171,7 @@ data:extend({
             shift = {-8, -8}
           }
         },
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "basic-chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"basic-chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 1,
@@ -204,7 +202,7 @@ data:extend({
             icon_mipmaps = 4,
           }
         },
-        category = "basic-chemistry",
+        categories={"basic-chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 1,
@@ -244,7 +242,7 @@ data:extend({
           }
         },
         auto_recycle = false,
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 2,
@@ -285,7 +283,7 @@ data:extend({
           }
         },
         auto_recycle = false,
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 2,
@@ -325,7 +323,7 @@ data:extend({
           }
         },
         auto_recycle = false,
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 1,
@@ -365,7 +363,7 @@ data:extend({
           }
         },
         auto_recycle = false,
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         energy_required = 1,
@@ -391,26 +389,7 @@ data:extend({
 })
 
 if mods["space-age"] then
-    if mods["Age-of-Production"] then
-        data:extend({
-            {
-                type = "recipe-category",
-                name = "petrochemistry-or-basic-chemistry",
-                can_recycle = false
-            }
-        })
-    end
     data:extend({
-        {
-            type = "recipe-category",
-            name = "organic-or-basic-chemistry",
-            can_recycle = false
-        },    
-        {
-            type = "recipe-category",
-            name = "cryogenics-or-basic-chemistry",
-            can_recycle = false
-        },
         {
             type = "recipe",
             name = "panspermia-asteroid-crushing",
@@ -418,13 +397,13 @@ if mods["space-age"] then
             icon_size = 64,
             subgroup = "space-crushing",
             order = "b-a-d",
-            category = "crushing",
+            categories={"crushing"},
             ingredients = {
-                {type="item", name="panspermia-asteroid-chunk", amount=1},
+                {type="item", name="panspermia-asteroid-chunk", amount=1, ignored_by_stats=1},
             },
             results = {
                 {type="item", name="spoilage", amount=20},
-                {type="item", name="panspermia-asteroid-chunk", amount=1, probability=0.2}
+                {type="item", name="panspermia-asteroid-chunk", amount=1, independent_probability=0.3, ignored_by_stats=1}
             },
             auto_recycle = false,
             energy_required = 2,
@@ -439,14 +418,14 @@ if mods["space-age"] then
             icon_size = 64,
             subgroup = "space-crushing",
             order = "fa",
-            category = "crushing",
+            categories={"crushing"},
             ingredients = {
-                {type="item", name="panspermia-asteroid-chunk", amount=1},
+                {type="item", name="panspermia-asteroid-chunk", amount=1, ignored_by_stats=1},
             },
             results = {
                 {type="item", name="spoilage", amount=10},
                 {type="item", name="wood", amount=4},
-                {type="item", name="panspermia-asteroid-chunk", amount=1, probability=0.05}
+                {type="item", name="panspermia-asteroid-chunk", amount=1, independent_probability=0.1, ignored_by_stats=1}
             },
             auto_recycle = false,
             energy_required = 5,
@@ -461,7 +440,7 @@ if mods["space-age"] then
             icon_size = 64,
             subgroup = "space-crushing",
             order = "b-b-d",
-            category = "crushing",
+            categories={"crushing"},
             ingredients = {
                 {type="item", name="panspermia-asteroid-chunk", amount=1},
             },
@@ -493,7 +472,7 @@ if mods["space-age"] then
             auto_recycle = false,
             subgroup = "agriculture-processes",
             order = "c[nutrients]-c[nutrients-from-spoilage]-alt",
-            category = "crafting",
+            categories={"crafting"},
             ingredients = {
                 {type="item", name="spoilage", amount=10},
                 {type="item", name="bioflux", amount=1},
@@ -509,7 +488,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "spoilage-dessiccation",
-            category = "organic-or-basic-chemistry",
+            categories={"organic", "basic-chemistry"},
             icons = {
                 {
                     icon = "__space-age__/graphics/icons/spoilage.png",
@@ -545,7 +524,7 @@ if mods["space-age"] then
             name = "spoilage-liquefaction",
             subgroup = "agriculture-processes",
             order = "z",
-            category = "organic",
+            categories={"organic"},
             icons = {
                 {
                     icon = "__space-age__/graphics/icons/spoilage.png",
@@ -583,7 +562,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "synthetic-rubber",
-            category = "organic-or-basic-chemistry",
+            categories={"organic", "basic-chemistry"},
             icons = {
                 {
                     icon = "__BrimStuffMk2__/graphics/icons/rubber.png",
@@ -620,7 +599,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "chemical-waste-leaching",
-            category = "chemistry",
+            categories={"chemistry"},
             icons = {
                 {
                     icon = "__BrimStuffMk2__/graphics/icons/chemical-waste.png",
@@ -671,7 +650,7 @@ if mods["space-age"] then
                 }
 
             },
-            category = "organic-or-basic-chemistry",
+            categories={"organic", "basic-chemistry"},
             subgroup = "brimstuff-botany",
             order = "aa",
             ingredients = {
@@ -694,7 +673,7 @@ if mods["space-age"] then
             name = "yumako-hydroponics",
             icon = "__space-age__/graphics/icons/yumako-tree.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "d",
             ingredients = {
@@ -724,7 +703,7 @@ if mods["space-age"] then
             name = "jellynut-hydroponics",
             icon = "__space-age__/graphics/icons/jellystem.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "e",
             ingredients = {
@@ -752,7 +731,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "carbofungus-spore",
-            category = "organic",
+            categories={"organic"},
             subgroup = "brimstuff-botany",
             order = "f",
             ingredients = {
@@ -780,7 +759,7 @@ if mods["space-age"] then
             name = "carbofungus-pyroponics",
             icon = "__space-age__/graphics/icons/ashland-lichen-tree.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "fa",
             ingredients = {
@@ -789,8 +768,8 @@ if mods["space-age"] then
             },
             results = {
                 {type="item", name="coal", amount=1},
-                {type="item", name="carbofungus-spore", amount=1, probability=0.25}
-                --probability can be low - since this is post-gleba it is reasonable to expect players to have good prodmods.
+                {type="item", name="carbofungus-spore", amount=1, independent_probability=0.25}
+                --independent_probability can be low - since this is post-gleba it is reasonable to expect players to have good prodmods.
             },
             surface_conditions = {
                 {
@@ -822,7 +801,7 @@ if mods["space-age"] then
                     shift = {-8, -8}
                 }
             },
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "fb",
             ingredients = {
@@ -851,7 +830,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "metalcelium-spore",
-            category = "organic",
+            categories={"organic"},
             subgroup = "brimstuff-botany",
             order = "g",
             ingredients = {
@@ -882,7 +861,7 @@ if mods["space-age"] then
             name = "metalcelium-electroponics",
             icon = "__space-age__/graphics/icons/fulgurite.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "ga",
             ingredients = {
@@ -921,7 +900,7 @@ if mods["space-age"] then
                     shift = {-8, -8}
                 }
             },
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "gb",
             ingredients = {
@@ -931,10 +910,10 @@ if mods["space-age"] then
             },
             results = {
                 {type="item", name="holmium-ore", amount=1},
-                {type="item", name="metalcelium-spore", amount=1, ignored_by_stats=1, probability=0.2},
-                {type="item", name="stone", amount=1, probability=0.4},
-                {type="item", name="ice", amount=1, probability=0.5},
-                {type="item", name="concrete", amount=1, probability=0.6},
+                {type="item", name="metalcelium-spore", amount=1, ignored_by_stats=1, independent_probability=0.2},
+                {type="item", name="stone", amount=1, independent_probability=0.4},
+                {type="item", name="ice", amount=1, independent_probability=0.5},
+                {type="item", name="concrete", amount=1, independent_probability=0.6},
                 {type="fluid", name="chemical-waste", amount=80}
             },
             surface_conditions = {
@@ -956,7 +935,7 @@ if mods["space-age"] then
             name = "metalcelium-cryoponics",
             icon = "__space-age__/graphics/icons/lithium-iceberg-huge.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "gd",
             ingredients = {
@@ -998,7 +977,7 @@ if mods["space-age"] then
                 shift = {-8, -8}
             }
             },
-            category = "organic-or-chemistry",
+            categories={"organic", "chemistry"},
             subgroup = "aquilo-processes",
             order = "a[ammonia]-ab",
             energy_required = 2,
@@ -1034,7 +1013,7 @@ if mods["space-age"] then
                 scale = 0.33
               }
             },
-            category = "chemistry",
+            categories={"chemistry"},
             subgroup = "fluid-recipes",
             order = "c[oil-products]-ca",
             energy_required = 1,
@@ -1065,7 +1044,7 @@ if mods["space-age"] then
             {
                 type = "recipe",
                 name = "metalcelium-pyroponics",
-                category = "brimstuff-botany",
+                categories={"brimstuff-botany"},
                 subgroup = "brimstuff-botany",
                 order = "gc",
                 ingredients = {
@@ -1127,7 +1106,7 @@ if mods["space-age"] then
                         scale = 0.25
                     }
                 },
-                category = "organic-or-basic-chemistry",
+                categories={"organic", "chemistry"},
                 subgroup = "castra-processes",
                 order = "gc",
                 ingredients = {
@@ -1174,7 +1153,7 @@ if mods["space-age"] then
                     scale = 0.33
                 }
                 },
-                category = "chemistry",
+                categories={"chemistry"},
                 subgroup = "fluid-recipes",
                 order = "c[oil-products]-ca",
                 energy_required = 1,
@@ -1220,7 +1199,7 @@ if mods["LunarLandings"] then
             shift = {-8, -8}
           }
         },
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         main_product = "",
@@ -1249,70 +1228,70 @@ end
 
 if tune_up_data then
    tune_up_data.recipes["potassium-nitrate"] = {
-    category = "purification",
+    categories={"purification"},
     count = 2,
     energy_required = 1,
     ingredients = {{{"nitric-acid", 20}, {"stone", 1}}}
   }
 
    tune_up_data.recipes["rubber"] = {
-    category = "purification",
+    categories={"purification"},
     count = 5,
     energy_required = 1,
     ingredients = {{{"light-oil", 25}, {"toluene", 1}, {"sulfur", 1}}}
   }
 
    tune_up_data.recipes["gunpowder"] = {
-    category = "purification",
+    categories={"purification"},
     count = 3,
     energy_required = 1,
     ingredients = {{{"sulfuric-acid", 5}, {"carbon", 1}, {"potassium-nitrate", 1}}, {{"sulfuric-acid", 5}, {"coal", 1}, {"potassium-nitrate", 1}}}
   }
 
   tune_up_data.recipes["toluene"] = {
-    category = "purification",
+    categories={"purification"},
     count = 5,
     energy_required = 2,
     ingredients = {{{"nitric-acid", 50}, {"carbon", 1}, {"coal", 1}}, {{"nitric-acid", 50}, {"coal", 2}}}
   }
 
    tune_up_data.recipes["airtight-seal"] = {
-    category = "tuning-up",
+    categories={"tuning-up"},
     count = 1,
     energy_required = 2,
     ingredients = {{{"rubber", 1}, {"plastic-bar", 1}}}
   }
 
    tune_up_data.recipes["drive-belt"] = {
-    category = "tuning-up",
+    categories={"tuning-up"},
     count = 1,
     energy_required = 2,
     ingredients = {{{"rubber", 1}, {"bearing", 1}}, {{"rubber", 2}, {"spring", 1}}, {{"rubber", 2}, {"iron-gear-wheel", 1}}}
   }
 
    tune_up_data.recipes["spring"] = {
-    category = "tuning-up",
+    categories={"tuning-up"},
     count = data.raw.item["nitinol-plate"] and 20 or 2,
     energy_required = data.raw.item["nitinol-plate"] and 20 or 1,
     ingredients = {{{"nitinol-plate", 1}}, {{"bronze-plate", 1}}, {{"brass-plate", 1}}, {{"copper-plate", 1}}}
   }
 
    tune_up_data.recipes["differential-girdlespring"] = {
-    category = "tuning-up",
+    categories={"tuning-up"},
     count = 5,
     energy_required = 20,
     ingredients = {{{"nitinol-plate", 1}, {"complex-joint", 2}}, {{"nitinol-plate", 1}, {"spring", 20}}, {{"complex-joint", 1}, {"low-density-structure", 1}}, {{"low-density-structure", 1}}}
   }
 
    tune_up_data.recipes["carbofungus-spore"] = {
-    category = "purification",
+    categories={"purification"},
     count = 3,
     energy_required = 3,
     ingredients = {{{"growth-serum", 3}, {"nutrients", 1}, {"carbon", 1}}, {{"fertilizer-slurry", 15}, {"nutrients", 1}, {"carbon", 1}}}
   }
   
   tune_up_data.recipes["metalcelium-spore"] = {
-    category = "purification",
+    categories={"purification"},
     count = 5,
     energy_required = 5,
     ingredients = {{{"growth-serum", 5}, {"nutrients", 1}, {"holmium-ore", 1}}, {{"fertilizer-slurry", 25}, {"nutrients", 1}, {"holmium-ore", 1}}}
@@ -1328,7 +1307,7 @@ data:extend({
     {
         type = "recipe",
         name = "gunpowder",
-        category = "basic-chemistry",
+        categories={"basic-chemistry"},
         ingredients = {
             {type="item", name="sulfur", amount=2},
             {type="item", name="coal", amount=1},
@@ -1372,7 +1351,7 @@ data:extend({
                 shift = {-8, -8}
             }
         },
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"chemistry"},
         ingredients = {
             {type="item", name="wood", amount=10},
             {type="fluid", name="steam", amount=10},
@@ -1408,7 +1387,7 @@ data:extend({
                 shift = {-8, -8}
             }
         },
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"chemistry"},
         ingredients = {
             {type="item", name="coal", amount=1},
             {type="fluid", name="steam", amount=5},
@@ -1432,7 +1411,7 @@ data:extend({
     {
         type = "recipe",
         name = "drive-belt",
-        category = "crafting",
+        categories={"crafting"},
         ingredients = {
             {type="item", name="rubber", amount=3},
             {type="item", name="iron-gear-wheel", amount=2},
@@ -1449,7 +1428,7 @@ data:extend({
     {
         type = "recipe",
         name = "airtight-seal",
-        category = "crafting",
+        categories={"crafting"},
         ingredients = {
             {type="item", name="rubber", amount=2},
             {type="item", name="copper-plate", amount=2},
@@ -1479,7 +1458,7 @@ data:extend({
             scale = 0.33
           }
         },
-        category = "chemistry",
+        categories={"chemistry"},
         subgroup = "fluid-recipes",
         order = "c[oil-products]-ca",
         auto_recycle = false,
@@ -1510,7 +1489,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "gunpowder-in-space",
-            category = "chemistry",
+            categories={"chemistry"},
             ingredients = {
                 {type="item", name="carbon", amount=1},
                 {type="item", name="potassium-nitrate", amount=1},
@@ -1544,7 +1523,7 @@ if mods["space-age"] then
             name = "boompuff-cultivation",
             icon = "__space-age__/graphics/icons/boompuff.png",
             icon_size = 64,
-            category = "brimstuff-botany",
+            categories={"brimstuff-botany"},
             subgroup = "brimstuff-botany",
             order = "c",
             ingredients = {
@@ -1579,7 +1558,7 @@ else
         {
             type = "recipe",
             name = "synthetic-rubber",
-            category = "chemistry",
+            categories={"chemistry"},
             icons = {
                 {
                     icon = "__BrimStuffMk2__/graphics/icons/rubber.png",
@@ -1624,7 +1603,7 @@ data:extend({
     {
         type = "recipe",
         name = "spring",
-        category = "crafting",
+        categories={"crafting"},
         subgroup = "intermediate-product",
         ingredients = {
             {type="item", name="iron-stick", amount=1},
@@ -1649,7 +1628,7 @@ if mods["space-age"] or mods["LunarLandings"] then
         {
             type = "recipe",
             name = "differential-girdlespring",
-            category = "advanced-crafting",
+            categories={"advanced-crafting"},
             subgroup = "intermediate-product",
             ingredients = {
                 {type="item", name="spring", amount=8},
@@ -1673,7 +1652,7 @@ if mods["space-age"] then
         {
             type = "recipe",
             name = "growth-serum",
-            category = "organic",
+            categories={"organic"},
             subgroup = "brimstuff-botany",
             order = "az",
             ingredients = {
@@ -1703,8 +1682,8 @@ if mods["space-age"] then
     if data.raw.item["philosophers-hormone"] then
         rm.ReplaceIngredientProportional("growth-serum", "bioflux", "philosophers-hormone", 2)
         if data.raw.item["mutagenic-sludge"] then
-            rm.AddProduct("growth-serum", {type="item", name="mutagenic-sludge", amount=1, probability=0.02})
-            rm.AddProduct("metalcelium-spore", {type="item", name="mutagenic-sludge", amount=1, probability=0.02})
+            rm.AddProduct("growth-serum", {type="item", name="mutagenic-sludge", amount=1, independent_probability=0.02, always_fresh=true})
+            rm.AddProduct("metalcelium-spore", {type="item", name="mutagenic-sludge", amount=1, independent_probability=0.02, always_fresh=true})
         end
     end
 
@@ -1723,7 +1702,7 @@ if mods["space-age"] then
             {
                 type = "recipe",
                 name = "sludge-synthesis",
-                category = "organic",
+                categories={"organic"},
                 icon = "__BrimStuffMk2__/graphics/icons/sludge-synthesis.png",
                 icon_size = 64,
                 subgroup = "original-dint",
@@ -1750,7 +1729,7 @@ if mods["space-age"] then
             {
                 type = "recipe",
                 name = "toxin-extraction",
-                category = "organic",
+                categories={"organic"},
                 icon = "__BrimStuffMk2__/graphics/icons/toxin-extraction.png",
                 icon_size = 64,
                 subgroup = "original-dint",
@@ -1759,10 +1738,10 @@ if mods["space-age"] then
                     {type="item", name="mutagenic-sludge", amount=1, ignored_by_stats=1}
                 },
                 results = {
-                    {type="item", name="mutagenic-sludge", amount=1, probability=0.66, ignored_by_stats=1, ignored_by_productivity=1},
+                    {type="item", name="mutagenic-sludge", amount=1, independent_probability=0.66, ignored_by_stats=1, ignored_by_productivity=1},
                     {type="fluid", name="chemical-waste", amount=150},
-                    {type="item", name="toluene", amount=1, probability=0.33},
-                    {type="item", name="sulfur", amount=1, probability=0.33}
+                    {type="item", name="toluene", amount=1, independent_probability=0.33},
+                    {type="item", name="sulfur", amount=1, independent_probability=0.33}
                 },
                 auto_recycle = false,
                 energy_required = 8,

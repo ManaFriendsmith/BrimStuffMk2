@@ -44,7 +44,7 @@ if settings.startup["scrap-industry-plastic"].value then
         hide_from_player_crafting = true,
         subgroup = "production-scrap",
         order = "d[crafting]-da[rubber]",
-        category = mods["space-age"] and "organic-or-basic-chemistry" or "basic-chemistry",
+        categories = mods["space-age"] and {"organic", "basic-chemistry"} or {"basic-chemistry"},
         energy_required = 5,
         allow_productivity = true,
         enabled = false,
@@ -86,7 +86,7 @@ if misc.difficulty > 1 then
                 }
             },
             auto_recycle = false,
-            category = "basic-chemistry",
+            categories={"basic-chemistry"},
             subgroup = "fluid-recipes",
             order = "c[oil-products]-ca",
             energy_required = 4,
@@ -125,7 +125,7 @@ if misc.difficulty > 1 then
                 }
             },
             auto_recycle = false,
-            category = "chemistry",
+            categories={"chemistry"},
             subgroup = "fluid-recipes",
             order = "c[oil-products]-ca",
             energy_required = 4,
@@ -154,5 +154,5 @@ if misc.difficulty > 1 then
     rm.ReplaceIngredientProportional("rubber-from-bits", "sulfur", "toluene", 0.25)
     rm.ReplaceIngredientProportional("rubber-from-bits", "water", "petroleum-gas", 0.25)
 
-    data.raw.recipe["rubber-from-bits"].category = mods["space-age"] and "organic-or-chemistry" or "chemistry"
+    data.raw.recipe["rubber-from-bits"].categories = mods["space-age"] and {"organic", "chemistry"} or {"chemistry"}
 end

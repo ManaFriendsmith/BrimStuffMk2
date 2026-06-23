@@ -50,7 +50,7 @@ if mods["Paracelsin"] then
 
     rm.AddProduct("sphalerite-processing", "chemical-waste", 30)
     rm.AddProduct("tetrahedrite-processing", "chemical-waste", 15)
-    rm.AddProduct("zinc-purification", {type="item", name="potassium-nitrate", amount=1, probability=0.05})
+    rm.AddProduct("zinc-purification", {type="item", name="potassium-nitrate", amount=1, independent_probability=0.05})
     if not mods["ThemTharHillsMk2"] then
         rm.AddProduct("zinc-leaching", "chemical-waste", 10)
     end
@@ -101,7 +101,7 @@ if mods["castra"] then
     tm.AddUnlock("gunpowder-processing", "gunpowder-disposal")
 
     if mods["BrassTacksMk2"] then
-        rm.AddProduct("ancient-military-wreckage-recycling", {type="item", name="rubber", amount=1, probability=0.1})
+        rm.AddProduct("ancient-military-wreckage-recycling", {type="item", name="rubber", amount=1, independent_probability=0.1})
     end
 
     if mods["BrassTacksMk2"] and misc.difficulty == 3 then
@@ -139,7 +139,7 @@ if mods["Cerys-Moon-of-Fulgora"] then
     if misc.difficulty == 1 then
         --otherwise a decent amount of rubber from recycling centrifuges
         --synthetic rubber from vulcanus should still be helpful
-        rm.AddProduct("cerys-nuclear-scrap-recycling", {type="item", name="rubber", amount=1, probability=0.04})
+        rm.AddProduct("cerys-nuclear-scrap-recycling", {type="item", name="rubber", amount=1, independent_probability=0.04})
     end
 
     tm.RemovePrerequisite("byproduct-disposal", "recycling")
@@ -147,7 +147,7 @@ if mods["Cerys-Moon-of-Fulgora"] then
 end
 
 if mods["Moshine"] then
-    table.insert(data.raw["resource"]["multi-ore"].minable.results, {type="item", name="potassium-nitrate", amount=1, probability=0.03})
+    table.insert(data.raw["resource"]["multi-ore"].minable.results, {type="item", name="potassium-nitrate", amount=1, independent_probability=0.03})
     rm.AddProduct("petroleum-from-sand-sulfur-steam-carbon", "chemical-waste", 15)
 
     if misc.difficulty > 1 then
