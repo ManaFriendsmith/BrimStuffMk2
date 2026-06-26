@@ -262,7 +262,7 @@ if misc.difficulty == 3 then
         rm.RemoveIngredient("cryogenic-plant", "lithium-plate", 99999)
     end
 
-    rm.AddIngredient("ai-girlfriend", "explosives", 1)
+    rm.AddIngredient("ai-girlfriend", "explosives", 5)
 end
 
 rm.AddProduct("fluoroketone", "chemical-waste", 30)
