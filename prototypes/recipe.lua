@@ -210,7 +210,7 @@ data:extend({
             { type = "fluid", name = "chemical-waste", amount = 200 }
         },
         results = {
-            { type = "fluid", name = "steam", amount = 20, temperature = 165 }
+            { type = "fluid", name = "steam", amount = 30, temperature = 165 }
         },
         energy_required = 1,
         allow_productivity = true,
