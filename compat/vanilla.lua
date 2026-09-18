@@ -10,11 +10,11 @@ if misc.difficulty > 1 then
 end
 rm.ReplaceIngredientProportional("explosives", "sulfur", "sulfuric-acid", 10)
 rm.ReplaceIngredientProportional("explosives", "water", "nitric-acid", 2)
-data.raw.item["explosives"].localised_name = {"item-name.tnt"}
+data.raw.item["explosives"].localised_name = { "item-name.tnt" }
 rm.ReplaceIngredientProportional("chemical-science-pack", "sulfur", "explosives", 3)
 rm.AddProduct("explosives", "chemical-waste", 30)
 
-rm.MultiplyRecipe("sulfur", {input=2, time=2})
+rm.MultiplyRecipe("sulfur", { input = 2, time = 2 })
 rm.AddProduct("sulfur", "chemical-waste", 20)
 tm.RemoveUnlock("sulfur-processing", "sulfur")
 tm.AddUnlock("advanced-oil-processing", "sulfur")
@@ -35,9 +35,9 @@ end
 
 rm.AddProduct("plastic-bar", "chemical-waste", 20)
 
-rm.AddProduct("basic-oil-processing", {type="item", name="sulfur", amount=1, independent_probability=0.5})
-rm.AddProduct("advanced-oil-processing", {type="item", name="sulfur", amount=1, independent_probability=0.5})
-rm.AddProduct("coal-liquefaction", {type="item", name="sulfur", amount=1, independent_probability=0.5})
+rm.AddProduct("basic-oil-processing", { type = "item", name = "sulfur", amount = 1, independent_probability = 0.5 })
+rm.AddProduct("advanced-oil-processing", { type = "item", name = "sulfur", amount = 1, independent_probability = 0.5 })
+rm.AddProduct("coal-liquefaction", { type = "item", name = "sulfur", amount = 1, independent_probability = 0.5 })
 
 data.raw.recipe["basic-oil-processing"].auto_recycle = false
 data.raw.recipe["advanced-oil-processing"].auto_recycle = false
@@ -97,8 +97,8 @@ if misc.difficulty > 1 then
 end
 
 if misc.difficulty == 3 then
-    rm.AddProduct("heavy-oil-cracking", {type="item", name="toluene", amount=1, independent_probability=0.05})
-    rm.AddProduct("light-oil-cracking", {type="item", name="toluene", amount=1, independent_probability=0.05})
+    rm.AddProduct("heavy-oil-cracking", { type = "item", name = "toluene", amount = 1, independent_probability = 0.05 })
+    rm.AddProduct("light-oil-cracking", { type = "item", name = "toluene", amount = 1, independent_probability = 0.05 })
 end
 
 tm.AddUnlock("sulfur-processing", "pf-nitric-acid")
@@ -121,9 +121,11 @@ if data.raw.item["differential-girdlespring"] then
     else
         tm.AddUnlock("electric-engine", "differential-girdlespring")
         if not data.raw.technology["mechanical-engineering"] then
-            data.raw.technology["electric-engine"].icon = "__BrimStuffMk2__/graphics/technology/mechanical-engineering.png"
-            data.raw.technology["electric-engine"].localised_name = {"technology-name.mechanical-engineering"}
-            data.raw.technology["electric-engine"].localised_description = {"technology-description.mechanical-engineering"}
+            data.raw.technology["electric-engine"].icon =
+            "__BrimStuffMk2__/graphics/technology/mechanical-engineering.png"
+            data.raw.technology["electric-engine"].localised_name = { "technology-name.mechanical-engineering" }
+            data.raw.technology["electric-engine"].localised_description = {
+                "technology-description.mechanical-engineering" }
         end
     end
 
@@ -211,7 +213,7 @@ end
 
 if misc.difficulty > 1 then
     rm.AddIngredient("pump", "airtight-seal", 2)
-    if difficulty == 3 and not mods["IfNickelMk2"] then
+    if misc.difficulty == 3 and not mods["IfNickelMk2"] then
         rm.AddIngredient("pump", "spring", 2)
     end
 else
@@ -298,7 +300,7 @@ if misc.difficulty > 1 then
         if (mods["space-age"] or not mods["LunarLandings"]) and not data.raw.item["skyseeker-armature"] then
             rm.AddIngredient("rocket-silo", "differential-girdlespring", 100)
         end
-    end    
+    end
 end
 
 if misc.difficulty == 3 and (not mods["IfNickelMk2"]) then
@@ -341,10 +343,10 @@ if misc.difficulty > 1 then
 end
 
 if not data.raw.fluid["organotins"] then
-    data.raw.recipe["slowdown-capsule"].categories={"crafting-with-fluid"}
+    data.raw.recipe["slowdown-capsule"].categories = { "crafting-with-fluid" }
     rm.AddIngredient("slowdown-capsule", "chemical-waste", 50)
 
-    data.raw.recipe["poison-capsule"].categories={"crafting-with-fluid"}
+    data.raw.recipe["poison-capsule"].categories = { "crafting-with-fluid" }
     rm.AddIngredient("poison-capsule", "chemical-waste", 100)
 end
 
