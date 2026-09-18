@@ -210,7 +210,7 @@ data:extend({
             { type = "fluid", name = "chemical-waste", amount = 200 }
         },
         results = {
-            { type = "fluid", name = "steam", amount = 30, temperature = 165 }
+            { type = "fluid", name = "steam", amount = 25, temperature = 165 }
         },
         energy_required = 1,
         allow_productivity = true,
@@ -1233,7 +1233,7 @@ if tune_up_data then
         categories = { "purification" },
         count = 5,
         energy_required = 1,
-        ingredients = { { { "light-oil", 25 }, { "toluene", 1 }, { "sulfur", 1 } } }
+        ingredients = { { { "light-oil", 25 }, { "toluene", 1 }, { "sulfur", 1 } }, { { "light-oil", 25 }, { "plastic-bar", 3 } } }
     }
 
     tune_up_data.recipes["gunpowder"] = {
@@ -1247,7 +1247,7 @@ if tune_up_data then
         categories = { "purification" },
         count = 5,
         energy_required = 2,
-        ingredients = { { { "nitric-acid", 50 }, { "carbon", 1 }, { "coal", 1 } }, { { "nitric-acid", 50 }, { "coal", 2 } } }
+        ingredients = { { { "nitric-acid", 50 }, { "carbon", 1 }, { "coal", 1 } }, { { "nitric-acid", 50 }, { "coal", 3 } } }
     }
 
     tune_up_data.recipes["airtight-seal"] = {
@@ -1273,7 +1273,7 @@ if tune_up_data then
 
     tune_up_data.recipes["differential-girdlespring"] = {
         categories = { "tuning-up" },
-        count = 5,
+        count = 3,
         energy_required = 20,
         ingredients = { { { "nitinol-plate", 1 }, { "complex-joint", 2 } }, { { "nitinol-plate", 1 }, { "spring", 20 } }, { { "complex-joint", 1 }, { "low-density-structure", 1 } }, { { "low-density-structure", 1 } } }
     }
