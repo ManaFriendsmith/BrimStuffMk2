@@ -366,4 +366,16 @@ if tune_up_data then
     tune_up_data.AddIngredient("coal", "chemical-waste", 5, "byproduct")
     tune_up_data.AddIngredient("sulfur", "chemical-waste", 5, "byproduct")
     tune_up_data.AddIngredient("plastic-bar", "chemical-waste", 10, "byproduct")
+
+    if mods["tuner-upper"] and settings.startup["tuner-upper-byproducts"].value == "Standardised" then
+
+        if misc.difficulty == 3 then
+            rm.AddProduct("mechanical-scrap-recycling", { type = "item", name = "spring", amount = 1, independent_probability = 0.02 })
+        end
+
+        if misc.difficulty > 1 then
+            rm.AddProduct("plumbing-scrap-recycling", { type = "item", name = "airtight-seal", amount = 1, independent_probability = 0.01 })
+        end
+        rm.AddProduct("plumbing-scrap-recycling", { type = "item", name = "rubber", amount = 1, independent_probability = 0.01 })
+    end
 end
