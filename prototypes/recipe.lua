@@ -1254,28 +1254,36 @@ if tune_up_data then
         categories = { "tuning-up" },
         count = 1,
         energy_required = 2,
-        ingredients = { { { "rubber", 1 }, { "plastic-bar", 1 } } }
+        ingredients = { { { "rubber", 1 }, { "plastic-bar", 1 } } },
+        scrap_types = { { "metal-scrap", 1 } },
+        scrap_yield = 1
     }
 
     tune_up_data.recipes["drive-belt"] = {
         categories = { "tuning-up" },
         count = 1,
         energy_required = 2,
-        ingredients = { { { "rubber", 1 }, { "bearing", 1 } }, { { "rubber", 2 }, { "spring", 1 } }, { { "rubber", 2 }, { "iron-gear-wheel", 1 } } }
+        ingredients = { { { "rubber", 1 }, { "bearing", 1 } }, { { "rubber", 2 }, { "spring", 1 } }, { { "rubber", 2 }, { "iron-gear-wheel", 2 } } },
+        scrap_types = { { "mechanical-scrap", 1 } },
+        scrap_yield = 2
     }
 
     tune_up_data.recipes["spring"] = {
         categories = { "tuning-up" },
-        count = data.raw.item["nitinol-plate"] and 20 or 2,
+        count = data.raw.item["nitinol-plate"] and 20 or 1,
         energy_required = data.raw.item["nitinol-plate"] and 20 or 1,
-        ingredients = { { { "nitinol-plate", 1 } }, { { "bronze-plate", 1 } }, { { "brass-plate", 1 } }, { { "copper-plate", 1 } } }
+        ingredients = { { { "nitinol-plate", 1 } }, { { "bronze-plate", 1 } }, { { "brass-plate", 1 } }, { { "copper-plate", 1 } } },
+        scrap_types = { {"metal-scrap", 1} },
+        scrap_yield = data.raw.item["nitinol-plate"] and 10 or 1
     }
 
     tune_up_data.recipes["differential-girdlespring"] = {
         categories = { "tuning-up" },
         count = 3,
         energy_required = 20,
-        ingredients = { { { "nitinol-plate", 1 }, { "complex-joint", 2 } }, { { "nitinol-plate", 1 }, { "spring", 20 } }, { { "complex-joint", 1 }, { "low-density-structure", 1 } }, { { "low-density-structure", 1 } } }
+        ingredients = { { { "nitinol-plate", 1 }, { "complex-joint", 2 } }, { { "nitinol-plate", 1 }, { "spring", 20 } }, { { "complex-joint", 1 }, { "low-density-structure", 1 } }, { { "low-density-structure", 1 }, { "spring", 12 } } },
+        scrap_types = { { "mechanical-scrap", 10 }, { "structural-scrap", 1 } },
+        scrap_yield = 25
     }
 
     tune_up_data.recipes["carbofungus-spore"] = {
