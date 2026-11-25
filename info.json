@@ -12,16 +12,19 @@
     "pf-functions",
     "? space-age",
     "? pf-sa-compat",
-    
+
+    "? tuner-upper",
+    "? pf-beacon-rework",
+
     "? BrassTacksMk2",
     "? IfNickelMk2",
     "? ThemTharHillsMk2",
-    
+
     "? maraxsis",
     "? Paracelsin",
     "? castra",
     "? LunarLandings",
     "? Moshine",
-    
+
     "! scrap-chemistry"]
 }
