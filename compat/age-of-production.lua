@@ -2,60 +2,65 @@ local rm = require("__pf-functions__/recipe-manipulation")
 local tm = require("__pf-functions__/technology-manipulation")
 local misc = require("__pf-functions__/misc")
 
-table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories, "ammunition-or-basic-chemistry")
-table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "ammunition-or-basic-chemistry")
-table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "ammunition-or-chemistry")
-table.insert(data.raw["assembling-machine"]["aop-armory"].crafting_categories, "ammunition-or-basic-chemistry")
-table.insert(data.raw["assembling-machine"]["aop-armory"].crafting_categories, "ammunition-or-chemistry")
+--table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories, "ammunition-or-basic-chemistry")
+--table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "ammunition-or-basic-chemistry")
+--table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "ammunition-or-chemistry")
+--table.insert(data.raw["assembling-machine"]["aop-armory"].crafting_categories, "ammunition-or-basic-chemistry")
+--table.insert(data.raw["assembling-machine"]["aop-armory"].crafting_categories, "ammunition-or-chemistry")
 
-table.insert(data.raw["assembling-machine"]["aop-biochemical-facility"].crafting_categories, "organic-or-basic-chemistry")
+--table.insert(data.raw["assembling-machine"]["aop-biochemical-facility"].crafting_categories, "organic-or-basic-chemistry")
+
+local pipe_pics = table.deepcopy(require("__base__/prototypes/entity/assembler-pictures").assembler2pipepictures)
+
 if not data.raw["assembling-machine"]["aop-biochemical-facility"].fluid_boxes then
     data.raw["assembling-machine"]["aop-biochemical-facility"].fluid_boxes = {
         {
             production_type = "input",
-            pipe_picture = assembler2pipepictures(),
+            pipe_picture = pipe_pics,
             pipe_covers = pipecoverspictures(),
             volume = 100,
-            pipe_connections = {{ flow_direction="input", position = {-2, -3}, direction = defines.direction.north}},
-            secondary_draw_orders = { north = -1,}
+            pipe_connections = { { flow_direction = "input", position = { -2, -3 }, direction = defines.direction.north } },
+            secondary_draw_orders = { north = -1, }
         },
         {
             production_type = "input",
-            pipe_picture = assembler2pipepictures(),
+            pipe_picture = pipe_pics,
             pipe_covers = pipecoverspictures(),
             volume = 100,
-            pipe_connections = {{ flow_direction="input", position = {2, -3}, direction = defines.direction.north}},
-            secondary_draw_orders = { north = -1,}
+            pipe_connections = { { flow_direction = "input", position = { 2, -3 }, direction = defines.direction.north } },
+            secondary_draw_orders = { north = -1, }
         },
         {
             production_type = "output",
-            pipe_picture = assembler2pipepictures(),
+            pipe_picture = pipe_pics,
             pipe_covers = pipecoverspictures(),
             volume = 100,
-            pipe_connections = {{ flow_direction="input", position = {-2, 3}, direction = defines.direction.south}},
-            secondary_draw_orders = { north = -1,}
+            pipe_connections = { { flow_direction = "input", position = { -2, 3 }, direction = defines.direction.south } },
+            secondary_draw_orders = { north = -1, }
         },
         {
             production_type = "output",
-            pipe_picture = assembler2pipepictures(),
+            pipe_picture = pipe_pics,
             pipe_covers = pipecoverspictures(),
             volume = 100,
-            pipe_connections = {{ flow_direction="input", position = {2, 3}, direction = defines.direction.south}},
-            secondary_draw_orders = { north = -1,}
+            pipe_connections = { { flow_direction = "input", position = { 2, 3 }, direction = defines.direction.south } },
+            secondary_draw_orders = { north = -1, }
         }
     }
 end
 
 table.insert(data.raw["assembling-machine"]["aop-greenhouse"].crafting_categories, "brimstuff-botany")
 rm.ReplaceIngredientProportional("aop-greenhouse", "landfill", "brimstuff-greenhouse", 0.5)
-data.raw.item["aop-greenhouse"].localised_name = {"item-name.advanced-greenhouse"}
-data.raw.recipe["aop-greenhouse"].localised_name = {"item-name.advanced-greenhouse"}
-data.raw.technology["aop-greenhouse"].localised_name = {"item-name.advanced-greenhouse"}
-data.raw["assembling-machine"]["aop-greenhouse"].localised_name = {"item-name.advanced-greenhouse"}
+data.raw.item["aop-greenhouse"].localised_name = { "item-name.advanced-greenhouse" }
+data.raw.recipe["aop-greenhouse"].localised_name = { "item-name.advanced-greenhouse" }
+data.raw.technology["aop-greenhouse"].localised_name = { "item-name.advanced-greenhouse" }
+data.raw["assembling-machine"]["aop-greenhouse"].localised_name = { "item-name.advanced-greenhouse" }
 
-table.insert(data.raw["assembling-machine"]["aop-petrochemical-facility"].crafting_categories, "petrochemistry-or-basic-chemistry")
+table.insert(data.raw["assembling-machine"]["aop-petrochemical-facility"].crafting_categories,
+    "petrochemistry-or-basic-chemistry")
 table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "petrochemistry-or-basic-chemistry")
-table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories, "petrochemistry-or-basic-chemistry")
+table.insert(data.raw["assembling-machine"]["basic-chemical-plant"].crafting_categories,
+    "petrochemistry-or-basic-chemistry")
 
 if misc.difficulty > 1 then
     rm.ReplaceIngredientProportional("aop-greenhouse", "iron-gear-wheel", "airtight-seal")
